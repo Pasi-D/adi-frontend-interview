@@ -26,7 +26,7 @@ export default async function Product({ params }: IProductPageProps) {
   }
 
   return (
-    <div className="pb-16 pt-24 sm:pb-24">
+    <div className="mx-auto max-w-2xl space-y-8 px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <BreadCrumbNavigation
         breadCrumbsList={[
           { order: 1, clickable: true, displayName: "Products", path: "/products" },
@@ -53,6 +53,7 @@ export default async function Product({ params }: IProductPageProps) {
           <ProductImageGallery
             featuredImage={product.featuredImage}
             thumbnailImage={product.thumbnailImage}
+            imageAlt={product.description}
           />
           <div className="mt-8 lg:col-span-5">
             <form>

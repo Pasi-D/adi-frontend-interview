@@ -7,11 +7,13 @@ import {
 interface IProductImageGalleryProps {
   featuredImage: string;
   thumbnailImage: string;
+  imageAlt: string;
 }
 
 const ProductImageGallery: React.FC<IProductImageGalleryProps> = ({
   featuredImage,
   thumbnailImage,
+  imageAlt
 }) => {
   return (
     <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
@@ -19,21 +21,21 @@ const ProductImageGallery: React.FC<IProductImageGalleryProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
         <Image
           src={featuredImage}
-          alt="Featured image"
+          alt={imageAlt}
           className="lg:col-span-2 lg:row-span-2 rounded-lg"
           width={PRODUCT_FEATURED_IMAGE_DIMENSIONS.WIDTH}
           height={PRODUCT_FEATURED_IMAGE_DIMENSIONS.HEIGHT}
         />
         <Image
           src={thumbnailImage}
-          alt="Side profile of women's Basic Tee in black."
+          alt={imageAlt}
           className="hidden lg:block rounded-lg"
           width={PRODUCT_THUMBNAIL_IMAGE_DIMENSIONS.WIDTH}
           height={PRODUCT_THUMBNAIL_IMAGE_DIMENSIONS.HEIGHT}
         />
         <Image
           src={thumbnailImage}
-          alt="Front of women's Basic Tee in black."
+          alt={imageAlt}
           className="hidden lg:block rounded-lg"
           width={PRODUCT_THUMBNAIL_IMAGE_DIMENSIONS.WIDTH}
           height={PRODUCT_THUMBNAIL_IMAGE_DIMENSIONS.HEIGHT}
