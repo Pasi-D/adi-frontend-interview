@@ -15,9 +15,7 @@ const BreadCrumbNavigation: React.FC<IBreadCrumbNavigationProps> = ({
   const sortedCrumbs = [...crumbs].sort((a, b) => a.order - b.order);
 
   const handleClick = (path: string) => {
-    if (path) {
-      router.push(path);
-    }
+    router.push(path);
   };
 
   return (
