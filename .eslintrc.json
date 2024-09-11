@@ -31,7 +31,6 @@
     "no-unsafe-optional-chaining": "off",
     "no-return-assign": "warn",
     "spaced-comment": "warn",
-    "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
