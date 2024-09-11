@@ -22,6 +22,21 @@ export interface IProduct extends Features {
   colorOptions: Array<keyof typeof COLOR_OPTIONS>;
 }
 
+interface ClickableBreadCrumb {
+  order: number;
+  clickable: true;
+  displayName: string;
+  path: string;
+}
+
+interface UnClickableBreadCrumb {
+  order: number;
+  clickable: false;
+  displayName: string;
+}
+
+export type BreadCrumb = ClickableBreadCrumb | UnClickableBreadCrumb;
+
 export interface ProductDetailsFeatures {
   featureName: string;
   featureDescription: string | Record<string, string>;

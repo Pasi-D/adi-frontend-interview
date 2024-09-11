@@ -27,7 +27,18 @@ export default async function Product({ params }: IProductPageProps) {
 
   return (
     <div className="pb-16 pt-24 sm:pb-24">
-      <BreadCrumbNavigation productCategory={product.productCategory} productName={product.name} />
+      <BreadCrumbNavigation
+        breadCrumbsList={[
+          { order: 1, clickable: true, displayName: "Products", path: "/products" },
+          { order: 2, clickable: false, displayName: product.productCategory },
+          {
+            order: 3,
+            clickable: true,
+            displayName: product.name,
+            path: `/products/${product.productCategory.toLowerCase()}/${product.id}`,
+          },
+        ]}
+      />
       <div className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
           <div className="lg:col-span-5 lg:col-start-8">

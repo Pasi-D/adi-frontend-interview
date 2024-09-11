@@ -1,42 +1,51 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { BreadCrumb } from "../types";
+
 interface IBreadCrumbNavigationProps {
-  productCategory: string;
-  productName: string;
+  breadCrumbsList: Array<BreadCrumb>;
 }
 
 const BreadCrumbNavigation: React.FC<IBreadCrumbNavigationProps> = ({
-  productCategory,
-  productName,
+  breadCrumbsList: crumbs,
 }) => {
+  const router = useRouter();
+
+  const sortedCrumbs = [...crumbs].sort((a, b) => a.order - b.order);
+
+  const handleClick = (path: string) => {
+    if (path) {
+      router.push(path);
+    }
+  };
+
   return (
     <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <ol role="list" className="flex items-center space-x-4">
-        <li>
-          <div className="flex items-center">
-            <a href="#" className="mr-4 text-sm font-medium text-gray-900">
-              Products
-            </a>
-            <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
-              <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
-            </svg>
-          </div>
-        </li>
-        <li>
-          <div className="flex items-center">
-            <a href="#" className="mr-4 text-sm font-medium text-gray-900">
-              {productCategory}
-            </a>
-            <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
-              <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
-            </svg>
-          </div>
-        </li>
-        <li className="text-sm">
-          <a href="#" aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-            {productName}
-          </a>
-        </li>
+        {sortedCrumbs.map((crumb, index) => (
+          <li key={`crumb-${index}`}>
+            <div className="flex items-center">
+              <a
+                href="#"
+                className={`mr-4 text-sm font-medium ${crumb.clickable ? "text-gray-900 hover:text-gray-700 pointer-events-auto" : "text-gray-500 pointer-events-none"} `}
+                onClick={e => {
+                  e.preventDefault(); // Prevent default anchor behavior
+                  if (crumb.clickable) {
+                    handleClick(crumb.path);
+                  }
+                }}
+              >
+                {crumb.displayName}
+              </a>
+              {index < sortedCrumbs.length - 1 && (
+                <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
+                  <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
+                </svg>
+              )}
+            </div>
+          </li>
+        ))}
       </ol>
     </nav>
   );
