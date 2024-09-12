@@ -39,3 +39,7 @@ next-env.d.ts
 .vscode/*
 !.vscode/extensions.json
 *.code-workspace
+
+# Environment variables
+*.env
+!.env.dist
