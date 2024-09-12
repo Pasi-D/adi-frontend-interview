@@ -1,7 +1,5 @@
 ## ADI Technical Interview
 
-Refer https://jiechao.craft.me/pIUXtHovwrEQee for details regarding requirement.
-
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
