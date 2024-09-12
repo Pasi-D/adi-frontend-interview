@@ -13,7 +13,7 @@ interface IProductImageGalleryProps {
 const ProductImageGallery: React.FC<IProductImageGalleryProps> = ({
   featuredImage,
   thumbnailImage,
-  imageAlt
+  imageAlt,
 }) => {
   return (
     <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
