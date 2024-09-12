@@ -12,3 +12,10 @@ export const PRODUCT_CARD_IMAGE_DIMENSIONS = {
   WIDTH: 800,
   HEIGHT: 600,
 };
+
+export const ROUTE_QUERY_PARAMS = {
+  PRODUCT_COLOR: "color",
+  PRODUCT_STORAGE: "storage",
+};
+
+export const CART_COOKIE_NAME = "__CART__";

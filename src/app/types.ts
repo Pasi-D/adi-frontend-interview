@@ -41,3 +41,9 @@ export interface ProductDetailsFeatures {
   featureName: string;
   featureDescription: string | Record<string, string>;
 }
+
+export interface ProductCartItem {
+  id: string;
+  color: string;
+  storage: string;
+}

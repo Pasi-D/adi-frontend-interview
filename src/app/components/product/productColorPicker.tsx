@@ -1,30 +1,30 @@
 "use client";
-import { useEffect, useState } from "react";
-import { COLOR_OPTIONS } from "../../utils/colors";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { COLOR_OPTIONS } from "../../utils/colors";
+import { ROUTE_QUERY_PARAMS } from "@/app/constants";
 
 interface ProductColorPickerProps {
   colors: Array<keyof typeof COLOR_OPTIONS>;
+  selectedColor: string | null;
+  setSelectedColor: (color: string) => void;
 }
 
-const ProductColorPicker: React.FC<ProductColorPickerProps> = ({ colors }) => {
+const ProductColorPicker: React.FC<ProductColorPickerProps> = ({
+  colors,
+  selectedColor,
+  setSelectedColor,
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedColor, setSelectedColor] = useState<string | null>(
-    searchParams.get("color") || null,
-  );
 
   useEffect(() => {
     if (selectedColor) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("color", selectedColor);
+      params.set(ROUTE_QUERY_PARAMS.PRODUCT_COLOR, selectedColor);
       router.push(`?${params.toString()}`, undefined);
     }
   }, [selectedColor, router, searchParams]);
-
-  const handleColorSelection = (color: string) => {
-    setSelectedColor(color);
-  };
 
   return (
     <div>
@@ -41,12 +41,12 @@ const ProductColorPicker: React.FC<ProductColorPickerProps> = ({ colors }) => {
             >
               <input
                 type="radio"
-                name="color-choice"
-                defaultValue="Black"
+                name="color"
                 className="sr-only"
                 aria-labelledby="color-choice-0-label"
                 checked={selectedColor === color}
-                onChange={() => handleColorSelection(color)}
+                onChange={() => setSelectedColor(color)}
+                required
               />
               <span id="color-choice-0-label" className="sr-only">
                 {color}

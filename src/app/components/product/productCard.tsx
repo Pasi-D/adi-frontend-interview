@@ -3,24 +3,14 @@
 import Image from "next/image";
 import { PRODUCT_CARD_IMAGE_DIMENSIONS } from "@/app/constants";
 import { IProduct } from "@/app/types";
-import { useRouter } from "next/navigation";
 
 interface IProductCardProps {
   product: IProduct;
 }
 
 const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
-  const router = useRouter();
-
-  const handleClick = (path: string) => {
-    router.push(path);
-  };
-
   return (
-    <div
-      className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white cursor-pointer"
-      onClick={() => handleClick(`/products/${product.productCategory.toLowerCase}/${product.id}`)}
-    >
+    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white cursor-pointer">
       <div className="aspect-h-4 aspect-w-3 sm:aspect-none bg-gray-200 group-hover:opacity-75 sm:h-96">
         <Image
           src={product.featuredImage}
@@ -32,7 +22,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
       </div>
       <div className="flex flex-1 flex-col space-y-2 p-4">
         <h3 className="text-sm font-medium text-gray-900">
-          <a href="/products/smartphone/1">
+          <a href={`/products/${product.productCategory}/${product.id}`}>
             <span aria-hidden="true" className="absolute inset-0"></span>
             {product.name}
           </a>

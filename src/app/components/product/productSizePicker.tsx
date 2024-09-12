@@ -1,29 +1,29 @@
 "use client";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ROUTE_QUERY_PARAMS } from "@/app/constants";
 
 interface IProductSizePickerProps {
   storageOptions: Array<string>;
+  selectedSize: string | null;
+  setSelectedSize: (storage: string) => void;
 }
 
-const ProductSizePicker: React.FC<IProductSizePickerProps> = ({ storageOptions }) => {
+const ProductSizePicker: React.FC<IProductSizePickerProps> = ({
+  storageOptions,
+  selectedSize,
+  setSelectedSize,
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedSize, setSelectedSize] = useState<string | null>(
-    searchParams.get("storage") || null,
-  );
 
   useEffect(() => {
     if (selectedSize) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("storage", selectedSize);
+      params.set(ROUTE_QUERY_PARAMS.PRODUCT_STORAGE, selectedSize);
       router.push(`?${params.toString()}`, undefined);
     }
   }, [selectedSize, router, searchParams]);
-
-  const handleSizeSelection = (size: string) => {
-    setSelectedSize(size);
-  };
 
   return (
     <div className="mt-8">
@@ -44,16 +44,15 @@ const ProductSizePicker: React.FC<IProductSizePickerProps> = ({ storageOptions }
                   : ""
               }`}
               key={`storage-${key}`}
-              onClick={() => handleSizeSelection(storage)}
             >
               <input
                 type="radio"
-                name="size-choice"
-                defaultValue="XXS"
+                name="storage"
                 className="sr-only"
                 aria-labelledby="size-choice-0-label"
                 checked={selectedSize === storage}
-                readOnly
+                onChange={() => setSelectedSize(storage)}
+                required
               />
               <span id="size-choice-0-label">{storage}</span>
             </label>
