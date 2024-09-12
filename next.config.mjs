@@ -5,10 +5,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "nextjs.org",
-      },
-      {
-        protocol: "https",
         hostname: "tailwindui.com",
       },
       {
