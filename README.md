@@ -12,6 +12,14 @@ First, install the node modules
 yarn
 ```
 
+Create a copy of .env.dist file
+
+```bash
+cp .env.dist .env
+```
+
+Update the environment variables as required.
+
 Then run the development server:
 
 ```bash
