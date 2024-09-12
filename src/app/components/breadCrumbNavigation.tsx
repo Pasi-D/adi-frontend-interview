@@ -19,7 +19,7 @@ const BreadCrumbNavigation: React.FC<IBreadCrumbNavigationProps> = ({
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
         {sortedCrumbs.map((crumb, index) => (
           <li key={`crumb-${index}`}>
